@@ -95,4 +95,4 @@ hist(steps, main="No. of Steps taken per day", xlab="No. of Steps",ylab="No. of 
 ```
 
 
-## Are there differences in activity patterns between weekdays and weekends?
+
