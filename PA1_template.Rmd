@@ -8,11 +8,47 @@ output:
 
 ## Loading and preprocessing the data
 
+```{r cache=TRUE}
+data<-read.csv("activity.csv")
+summary(data)
+```
 
 
 ## What is mean total number of steps taken per day?
 
+1. Total number of steps taken each day
 
+```{r cache=TRUE}
+dates<-as.character(unique(data$date))
+a<-split(data,data$date)
+i=0
+steps<-sapply(a,function(x){
+  temp<-x$steps
+  temp<-temp[!is.na(temp)]
+  temp2<-sum(temp)
+  
+})
+step_data<-data.frame(dates,steps)
+Date<-step_data[,1]
+Steps<-step_data[,2]
+Step_Data<-data.frame(Date,Steps)
+Step_Data
+
+```
+
+2. Histogram
+
+```{r}
+hist(steps, main="No. of Steps taken per day", xlab="No. of Steps",ylab="No. of Days")
+```
+
+3. Mean and Median of No. of Steps each day
+
+```{r cache=TRUE}
+mean(Steps)
+median(Steps)
+
+```
 
 ## What is the average daily activity pattern?
 
