@@ -91,7 +91,7 @@ Step_Data
 - New Histogram
 
 ```{r}
-hist(steps, main="No. of Steps taken per day", xlab="No. of Steps",ylab="No. of Days")
+hist(steps, main="No. of Steps taken per day", xlab="No. of Steps",ylab="No. Of Days")
 ```
 
 
