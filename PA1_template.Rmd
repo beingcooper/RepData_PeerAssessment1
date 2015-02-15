@@ -16,7 +16,7 @@ summary(data)
 
 ## What is mean total number of steps taken per day?
 
-1. Total number of steps taken each day
+- Total number of steps taken each day
 
 ```{r cache=TRUE}
 dates<-as.character(unique(data$date))
@@ -36,13 +36,13 @@ Step_Data
 
 ```
 
-2. Histogram
+- Histogram
 
 ```{r}
 hist(steps, main="No. of Steps taken per day", xlab="No. of Steps",ylab="No. of Days")
 ```
 
-3. Mean and Median of No. of Steps each day
+- Mean and Median of No. of Steps each day
 
 ```{r cache=TRUE}
 mean(Steps)
@@ -50,12 +50,49 @@ median(Steps)
 
 ```
 
-## What is the average daily activity pattern?
-
 
 
 ## Imputing missing values
 
+- No. of Rows with NA field(s)
+
+```{r cache=TRUE}
+temp_data<-na.omit(data)
+nrow(data)-nrow(temp_data)
+```
+
+- Missing values
+
+```{r cache=TRUE}
+avg_steps_per_interval<-mean(Steps)/288
+pos<-which(is.na(data$steps))
+data[pos,1]=avg_steps_per_interval
+```
+
+- New Data Set
+
+```{r cache=TRUE}
+dates<-as.character(unique(data$date))
+a<-split(data,data$date)
+i=0
+steps<-sapply(a,function(x){
+  temp<-x$steps
+  temp<-temp[!is.na(temp)]
+  temp2<-sum(temp)
+  
+})
+step_data<-data.frame(dates,steps)
+Date<-step_data[,1]
+Steps<-step_data[,2]
+Step_Data<-data.frame(Date,Steps)
+Step_Data
+```
+
+- New Histogram
+
+```{r}
+hist(steps, main="No. of Steps taken per day", xlab="No. of Steps",ylab="No. of Days")
+```
 
 
 ## Are there differences in activity patterns between weekdays and weekends?
